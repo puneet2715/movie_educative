@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:movie_educative/models/movie_model.dart';
 import './providers/movies_provider.dart';
 
-void main() => runApp(MoviesApp());
+void main() => runApp(const MoviesApp());
 
 class MoviesApp extends StatelessWidget {
   const MoviesApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MoviesListing(),
     );
@@ -50,13 +50,27 @@ class _MoviesListingState extends State<MoviesListing> {
   @override
   Widget build(BuildContext context) {
     //Fetch movies
-    // fetchMovies();
+    fetchMovies();
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          "Movies App",
+          style: TextStyle(
+            color: Colors.black87,
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
       //NEW CODE: Rendering movies in ListView
       body: ListView.builder(
         //Calculating number of items using `movies` variable
-        itemCount: movies == null ? 0 : movies.length,
+        // itemCount: movies == null ? 0 : movies.length,
+        itemCount: movies.length,
         //Passing widget handle as `context`, and `index` to process one item at a time
         itemBuilder: (context, index) {
           return Padding(
